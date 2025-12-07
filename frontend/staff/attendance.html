@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mark Attendance</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+
+  <div class="header">
+    <h2>📅 Mark Attendance</h2>
+  </div>
+
+  <div class="card">
+    <label style="display:block;margin-bottom:8px;font-weight:600;color:#1D1D1F;font-size:14px;">Select Course</label>
+    <select id="courseSelectAttendance" onchange="loadStudentsForAttendance()" required>
+      <option value="">-- Select a Course --</option>
+    </select>
+
+    <label style="display:block;margin-bottom:8px;margin-top:16px;font-weight:600;color:#1D1D1F;font-size:14px;">Select Student</label>
+    <select id="studentSelectAttendance" required disabled>
+      <option value="">-- Select a Course First --</option>
+    </select>
+
+    <label style="display:block;margin-bottom:8px;margin-top:16px;font-weight:600;color:#1D1D1F;font-size:14px;">Date</label>
+    <input id="date" type="date" required>
+
+    <label style="display:block;margin-bottom:8px;margin-top:16px;font-weight:600;color:#1D1D1F;font-size:14px;">Status</label>
+    <select id="status" required>
+      <option value="present">Present</option>
+      <option value="absent">Absent</option>
+    </select>
+
+    <button onclick="markAttendance()" style="margin-top:20px;">Mark Attendance</button>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/staff.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Staff Dashboard</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+
+  <div class="header">
+    <h2>👩‍🏫 Staff Dashboard</h2>
+  </div>
+
+  <div class="grid dashboard-grid">
+
+    <div class="card dashboard-card" onclick="location.href='addCourse.html'" data-icon="➕">
+      <div class="card-icon">➕</div>
+      <h4>Add Course</h4>
+      <small>Add a new academic course</small>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card dashboard-card" onclick="location.href='addMarks.html'" data-icon="📝">
+      <div class="card-icon">📝</div>
+      <h4>Add Marks</h4>
+      <small>Assign marks to students</small>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card dashboard-card" onclick="location.href='attendance.html'" data-icon="📅">
+      <div class="card-icon">📅</div>
+      <h4>Attendance</h4>
+      <small>Mark student attendance</small>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card dashboard-card" onclick="location.href='notices.html'" data-icon="📢">
+      <div class="card-icon">📢</div>
+      <h4>Post Notice</h4>
+      <small>Send announcements</small>
+      <div class="card-arrow">→</div>
+    </div>
+
+    <div class="card dashboard-card" onclick="location.href='students.html'" data-icon="👨‍🎓">
+      <div class="card-icon">👨‍🎓</div>
+      <h4>Students List</h4>
+      <small>View all registered students</small>
+      <div class="card-arrow">→</div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

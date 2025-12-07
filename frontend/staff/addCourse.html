@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Course</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+  <div class="header">
+    <h2>➕ Add Course</h2>
+  </div>
+
+  <form onsubmit="addCourse(event)" class="card">
+    <input id="courseCode" placeholder="Course Code" required>
+    <input id="courseName" placeholder="Course Name" required>
+    <input id="credits" placeholder="Credits" type="number" required>
+
+    <button type="submit">Add Course</button>
+  </form>
+
+  <div class="card" style="margin-top:24px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <h3 style="margin:0;font-size:20px;font-weight:600;color:#1D1D1F;">📚 Existing Courses</h3>
+      <button class="btn-small" onclick="loadExistingCourses()" style="width:auto;">Refresh</button>
+    </div>
+    <div id="coursesList">
+      <div class="skeleton" style="height:60px;"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/staff.js"></script>
+
+</body>
+</html>

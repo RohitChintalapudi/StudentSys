@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Students List</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+
+  <div class="header">
+    <h2>👨‍🎓 Students List</h2>
+  </div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <label style="display:block;margin-bottom:8px;font-weight:600;color:#1D1D1F;font-size:14px;">Filter by Course</label>
+    <select id="courseFilter" onchange="filterStudentsByCourse()" style="margin-bottom:0;">
+      <option value="">-- Show All Students --</option>
+    </select>
+  </div>
+
+  <div id="studentList" class="card">
+    <div class="skeleton" style="height:100px;"></div>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/staff.js"></script>
+
+<script>
+let allStudents = [];
+
+async function loadStudents() {
+  try {
+    const res = await apiCall('/students/list', 'GET', null, true);
+    allStudents = res;
+    displayStudents(res);
+  } catch (err) {
+    console.error("Load students error:", err);
+    showPopup("Failed to load students", "error");
+  }
+}
+
+async function filterStudentsByCourse() {
+  const courseSelect = document.getElementById("courseFilter");
+  const courseId = courseSelect.value;
+
+  if (!courseId) {
+    // Show all students
+    displayStudents(allStudents);
+    return;
+  }
+
+  try {
+    // Show loading state
+    const box = document.getElementById("studentList");
+    box.innerHTML = "<div class='skeleton' style='height:100px;'></div>";
+
+    const students = await apiCall(`/students/course/${courseId}`, 'GET', null, true);
+    displayStudents(students);
+  } catch (err) {
+    console.error("Filter students error:", err);
+    showPopup("Failed to load students for this course", "error");
+  }
+}
+
+function displayStudents(students) {
+  const box = document.getElementById("studentList");
+  box.innerHTML = "";
+
+  if (!students || students.length === 0) {
+    box.innerHTML = "<p style='text-align:center;color:#86868B;padding:40px;font-size:14px;'>No students found</p>";
+    return;
+  }
+
+  students.forEach(s => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.style.marginBottom = "12px";
+    div.style.padding = "20px";
+
+    // Get course names if available
+    const courseNames = s.courses ? s.courses.map(c => c.courseName || c.courseCode || "Course").join(", ") : "No courses";
+
+    div.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:12px;">
+        <div style="flex:1;min-width:200px;">
+          <div style="font-size:18px;font-weight:600;color:#1D1D1F;margin-bottom:8px;">
+            ${s.name}
+          </div>
+          <div style="font-size:14px;color:#86868B;margin-bottom:4px;">
+            <strong>Roll:</strong> ${s.roll || "N/A"}
+          </div>
+          <div style="font-size:14px;color:#86868B;margin-bottom:4px;">
+            <strong>Department:</strong> ${s.department || "N/A"}
+          </div>
+          <div style="font-size:14px;color:#86868B;margin-top:8px;">
+            <strong>Courses:</strong> ${courseNames}
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;">
+          <button class="btn-small" onclick="location.href='../student/transcript.html?id=${s._id}'" style="white-space:nowrap;">
+            View Transcript 🎓
+          </button>
+        </div>
+      </div>
+    `;
+
+    box.appendChild(div);
+  });
+}
+
+// Load courses for filter dropdown
+async function loadCoursesForFilter() {
+  try {
+    const courses = await apiCall("/courses", "GET", null, true);
+    const courseSelect = document.getElementById("courseFilter");
+    if (!courseSelect) return;
+
+    if (!courses || courses.length === 0) {
+      return;
+    }
+
+    courses.forEach((course) => {
+      const option = document.createElement("option");
+      option.value = course._id;
+      option.textContent = `${course.courseCode} - ${course.courseName}`;
+      courseSelect.appendChild(option);
+    });
+  } catch (err) {
+    console.error("Load courses error:", err);
+  }
+}
+
+// Load both courses and students on page load
+document.addEventListener("DOMContentLoaded", () => {
+  loadCoursesForFilter();
+  loadStudents();
+});
+</script>
+
+</body>
+</html>

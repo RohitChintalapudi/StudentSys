@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+
+  <div class="header">
+    <h2>👨‍🎓 Student Dashboard</h2>
+    <button class="btn-small" onclick="downloadTranscript()">🎓 Download Transcript</button>
+  </div>
+
+  <div class="grid">
+
+    <div class="card" id="gpaCard">
+      <h4>🎯 GPA</h4>
+      <div id="gpaVal" style="font-size:28px;font-weight:700;">—</div>
+      <small style="color:#777;">Your overall grade performance</small>
+    </div>
+
+    <div class="card" id="attCard">
+      <h4>📅 Attendance</h4>
+      <div id="attVal" style="font-size:28px;font-weight:700;">—</div>
+      <small style="color:#777;">Overall attendance percentage</small>
+    </div>
+
+    <div class="card">
+      <h4>📘 Enrolled Courses</h4>
+      <div id="coursesList" style="margin-top:10px;"></div>
+    </div>
+
+  </div>
+
+  <div class="card" style="margin-top:22px;">
+    <h4>📝 Recent Marks</h4>
+    <div id="marksContainer" style="margin-top:12px;">
+      <div class="skeleton" style="height:50px;"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/student.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transcript</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+
+  <div class="header">
+    <h2>🎓 Transcript</h2>
+    <button class="btn-small" onclick="downloadTranscriptPrompt()">Download PDF</button>
+  </div>
+
+  <div class="card" id="transcriptBox">
+    <div class="skeleton" style="height:200px;"></div>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script>
+  loadTranscript();
+</script>
+
+</body>
+</html>

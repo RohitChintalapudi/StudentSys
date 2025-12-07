@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register — StudentSys</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<script src="./js/utils.js"></script>
+<script src="./js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+  <div class="header">
+    <h2>📝 Register</h2>
+    <small style="color:#777;">Create student or staff account</small>
+  </div>
+
+  <form onsubmit="registerUser(event)" class="card">
+    <input id="username" placeholder="Username" required>
+    <input id="password" placeholder="Password" type="password" required>
+
+    <select id="role">
+      <option value="student">Student 👨‍🎓</option>
+      <option value="staff">Staff 👩‍🏫</option>
+    </select>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <div class="card" style="margin-top:20px;text-align:center;background:#F5F5F7;padding:20px;">
+    <p style="margin:0;color:#86868B;font-size:14px;">
+      Want to sign in? 
+      <a href="login.html" style="color:#007AFF;font-weight:600;text-decoration:none;margin-left:4px;">Login</a>
+    </p>
+  </div>
+
+</div>
+
+<script src="./js/api.js"></script>
+<script src="./js/auth.js"></script>
+
+</body>
+</html>

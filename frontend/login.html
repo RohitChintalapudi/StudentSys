@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login — StudentSys</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<script src="./js/utils.js"></script>
+<script src="./js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+  <div class="header">
+    <h2>🔐 Login</h2>
+    <small style="color:#777;">Enter your credentials</small>
+  </div>
+
+  <div id="serverStatus" style="margin-bottom:20px;padding:12px;border-radius:8px;display:none;">
+    <small id="statusText"></small>
+  </div>
+
+  <form onsubmit="loginUser(event)" class="card">
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="card" style="margin-top:20px;text-align:center;background:#F5F5F7;padding:20px;">
+    <p style="margin:0;color:#86868B;font-size:14px;">
+      Create a new account? 
+      <a href="register.html" style="color:#007AFF;font-weight:600;text-decoration:none;margin-left:4px;">Register</a>
+    </p>
+  </div>
+</div>
+
+<script src="./js/api.js"></script>
+<script src="./js/auth.js"></script>
+<script>
+  // Check server connection on page load
+  async function checkServerStatus() {
+    const statusDiv = document.getElementById("serverStatus");
+    const statusText = document.getElementById("statusText");
+    
+    try {
+      const response = await fetch("http://localhost:5000/health");
+      if (response.ok) {
+        statusDiv.style.display = "block";
+        statusDiv.style.background = "#d4edda";
+        statusDiv.style.color = "#155724";
+        statusDiv.style.border = "1px solid #c3e6cb";
+        statusText.innerHTML = "✅ Server is connected and running";
+      } else {
+        throw new Error("Server returned error");
+      }
+    } catch (error) {
+      statusDiv.style.display = "block";
+      statusDiv.style.background = "#f8d7da";
+      statusDiv.style.color = "#721c24";
+      statusDiv.style.border = "1px solid #f5c6cb";
+      statusText.innerHTML = "❌ Cannot connect to server. Please start the backend server:<br><strong>cd backend</strong><br><strong>node server.js</strong>";
+    }
+  }
+  
+  // Check server status when page loads
+  window.addEventListener("load", () => {
+    setTimeout(checkServerStatus, 500);
+  });
+</script>
+
+</body>
+</html>

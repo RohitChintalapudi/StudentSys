@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post Notice</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+
+  <div class="header">
+    <h2>📢 Post Notice</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom:16px;">Create New Notice</h3>
+    <input id="title" placeholder="Notice Title" required>
+    <textarea id="message" placeholder="Notice content..." required></textarea>
+
+    <button onclick="addNotice()">Post Notice</button>
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <h3 style="margin-bottom:16px;">All Notices</h3>
+    <div id="noticesList">
+      <div class="skeleton" style="height:60px;"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/staff.js"></script>
+
+</body>
+</html>

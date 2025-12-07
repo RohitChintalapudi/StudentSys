@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GPA Calculator</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<script src="../js/utils.js"></script>
+<script src="../js/navloader.js"></script>
+<script>loadNavbar();</script>
+
+<div class="container">
+  <div class="header">
+    <h2>📊 GPA Calculator</h2>
+    <small style="color:#86868B;">Calculate your GPA using the formula: Σ(Grade Points × Credits) / Total Credits (Scale: 0-10)</small>
+  </div>
+
+  <div class="card">
+    <div style="margin-bottom:20px;">
+      <button class="btn-small" onclick="addSubject()" style="width:auto;margin-right:10px;">➕ Add Subject</button>
+      <button class="btn-small secondary" onclick="clearAll()" style="width:auto;">Clear All</button>
+    </div>
+
+    <div id="subjectsContainer">
+      <!-- Subjects will be added here dynamically -->
+    </div>
+
+    <div style="margin-top:24px;padding-top:24px;border-top:1px solid #D2D2D7;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div style="font-size:14px;color:#86868B;margin-bottom:4px;">Total Credits</div>
+          <div id="totalCredits" style="font-size:24px;font-weight:700;color:#1D1D1F;">0</div>
+        </div>
+        <div>
+          <div style="font-size:14px;color:#86868B;margin-bottom:4px;">Total Points</div>
+          <div id="totalPoints" style="font-size:24px;font-weight:700;color:#1D1D1F;">0</div>
+        </div>
+        <div style="background:linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);padding:20px;border-radius:12px;border:2px solid rgba(0, 122, 255, 0.3);min-width:200px;">
+          <div style="font-size:14px;color:#86868B;margin-bottom:8px;font-weight:500;">Your GPA</div>
+          <div id="calculatedGPA" style="font-size:36px;font-weight:700;color:#007AFF;">0.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:24px;background:#F5F5F7;">
+    <h4 style="margin-bottom:12px;color:#1D1D1F;">📖 How to Use</h4>
+    <ul style="margin:0;padding-left:20px;color:#86868B;line-height:1.8;font-size:14px;">
+      <li>Click "Add Subject" to add a new subject</li>
+      <li>Enter the subject name, grade points (0-10), and credits</li>
+      <li>GPA is calculated automatically using: Σ(Grade Points × Credits) / Total Credits</li>
+      <li>Grade Points: A = 10, B = 8, C = 6, D = 4, F = 0 (or enter your grade point directly)</li>
+      <li>You can add multiple subjects and remove any subject</li>
+      <li>Click "Clear All" to reset the calculator</li>
+    </ul>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/student.js"></script>
+
+</body>
+</html>
+
